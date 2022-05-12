@@ -7,14 +7,19 @@ public class MemoryCard : MonoBehaviour
     [SerializeField] GameObject cardBack;
 
     public void OnMouseDown() {
-        if(cardBack.activeSelf) {
+        if(cardBack.activeSelf && controller.canReveal) {
             cardBack.SetActive(false);
+            controller.CardRevealed(this);
         }
+    }
+
+    public void Unreaveal() {
+        cardBack.SetActive(true); 
     }
 
     [SerializeField] SceneController controller;
     private int _id;
-    private int Id {
+    public int Id {
         get {return _id;}
     }
     public void SetCard(int id, Sprite image) {
